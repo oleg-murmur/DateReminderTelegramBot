@@ -1,12 +1,7 @@
-const TelegramApi = require('node-telegram-bot-api')
+import TelegramApi from 'node-telegram-bot-api';
+import axios from 'axios';
 require('dotenv').config()
-const {    
-    myCommand,
-    dateTypes,
-    dates,
-    datesOptions,
-    greeting
-} = require('./ButtonsName/ButtonsName.js')
+import { myCommand, dateTypes, dates, datesOptions, greeting } from './ButtonsName/ButtonsName.js';
 
 const token = process.env.BOT_TOKEN
 const bot = new TelegramApi(token, {polling: true})

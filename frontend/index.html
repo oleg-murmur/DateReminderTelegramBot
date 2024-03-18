@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список событий</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Управление событиями</h1>
+        <button id="addButton">Добавить событие</button>
+        <button id="viewButton">Просмотреть все события</button>
+
+        <div class=""><div id="eventsContainer" class="events-container"></div></div>
+
+        <div id="addEventForm" class="hidden">
+            <input type="date" id="eventDate" placeholder="Дата">
+            <input type="text" id="eventName" placeholder="Название события">
+            <button id="saveEventButton">Сохранить</button>
+        </div>
+    </div>
+
+    <script src="index.js" type="module" defer></script>
+    <!-- <script src="index3.js" type="module" defer></script> -->
+</body>
+</html>
