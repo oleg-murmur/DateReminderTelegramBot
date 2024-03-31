@@ -7,7 +7,7 @@ const sheduleFunc = () => {
     {num: 3, schedule: '*/5 * * * * *'},
   ].forEach((num)=> {
     cron.schedule(num.schedule, () => {
-      console.log(`${num.num}`);
+      console.log(`Таска раз в определенное время: ${num.num} номер`);
     });
   })
   // cron.schedule('*/1 * * * *', () => {

@@ -1,0 +1,27 @@
+version: "3"
+services:
+  application:
+    container_name: application
+    build: ./backend
+    ports:
+      - 3000:3000
+#   redis:
+#     image: redis:latest
+#     ports:
+#       - "redis://localhost:6379:6379"
+#     volumes:
+#       - "./data:/data"
+#     command: ["redis-server", "--bind", "redis", "--port", "6379"]
+#     networks:
+#       - webnet
+      
+# networks:
+#   webnet:
+
+    # application:
+    # container_name: application
+    # build: ./backend
+    # ports:
+    #   - 3000:3000
+    # depends_on:
+    #   - redis_insight

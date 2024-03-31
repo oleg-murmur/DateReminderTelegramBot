@@ -7,15 +7,23 @@
   "scripts": {
     "dev": "nodemon index.js -p 3000",
     "devtwo": "nodemon index3.js -p 3000",
-    "start": "node index.js"
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.7",
+    "clean-webpack-plugin": "^4.0.0",
     "dotenv": "^16.4.5",
     "node-telegram-bot-api": "^0.64.0",
     "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.6.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
   }
 }

@@ -10,9 +10,14 @@ const eventName = document.getElementById('eventName');
 let events = [];
 
 const getData = async () => {
-    await fetch('http://localhost:3000/data')
-      .then(response => response.json())
-      .then(data => {console.log(data); events = data.data})
+    try {
+        await fetch('http://localhost:3000/data')
+        .then(response => response.json())
+        .then(data => {console.log(data); events = data.data})        
+    } catch (error) {
+        console.log(error)
+    }
+
     // console.log(data)
 }
 getData()
