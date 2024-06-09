@@ -1,21 +1,29 @@
 var cron = require('node-cron');
+const {bot} = require("./bot/connections/token.connection")
+const  { CronJob } = require('cron');
+const dates = [
+  {num: 1, schedule: '*/10 * * * * *', date: "05-05-2024",chatId: 2027875527},
+  {num: 2, schedule: '*/2 * * * * *'},
+  {num: 3, schedule: '*/5 * * * * *'},
+] 
+const sheduleFunc = (res) => {
+  try {
+    // const job = new CronJob(
+    //   '* * * * * *', // cronTime
+      function test() {
+        dates.forEach((num)=> {
+            if(num.date === "05-05-2024")
+            bot.telegram.sendMessage(num.chatId, 'Привет! В этом чате можно настроить уведомления о важных событиях, например, дни рождения')
+        })
+      }
+      test()
+    // );
+        console.log("message")
 
-const sheduleFunc = () => {
-  [
-    {num: 1, schedule: '*/10 * * * * *'},
-    {num: 2, schedule: '*/2 * * * * *'},
-    {num: 3, schedule: '*/5 * * * * *'},
-  ].forEach((num)=> {
-    cron.schedule(num.schedule, () => {
-      console.log(`Таска раз в определенное время: ${num.num} номер`);
-    });
-  })
-  // cron.schedule('*/1 * * * *', () => {
-  //   console.log(`1`);
-  // });
-  // cron.schedule('* * * * * *', () => {
-  //   console.log(`running a task every minute, ${num}`);
-  // });
+        } catch (error) {
+            console.log(error)
+        }
+    return res.json("all good");
 }
 
 

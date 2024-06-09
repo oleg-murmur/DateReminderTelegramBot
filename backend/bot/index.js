@@ -1,9 +1,25 @@
 
-// commands
+// start commands
 require("./middleware/command/start.command")
 
 //on
-require("./middleware/on/message.on")
-require("../bot")
+
+
+//cron job
+// require("./middleware/on/message.on")
+
+
+
+
+
+// require("../bot")
+
+
+
+
+
+
 // connection
 require("../bot/connections/local.connection")
+
+const {app} = require("../index")

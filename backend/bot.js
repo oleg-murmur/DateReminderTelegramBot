@@ -2,8 +2,8 @@ const TelegramApi =  require('node-telegram-bot-api');
 // const axios = require('axios');
 const { myCommand, dateTypes, dates, datesOptions, greeting } =require('./ButtonsName.js');
 const  { CronJob } = require('cron');
-const token = "7057135857:AAHjooymhIexyjHG9cPpNY0p_GlNNjEx-HQ"
-const bot = new TelegramApi(token, {polling: true})
+const token = "7057135857:AAGL3QFh0JsDwmwz2CyFbJ24no-W_1_eBbA"
+const {bot} = require("./bot/connections/token.connection.js")
 
 
 const start = () => {
@@ -24,19 +24,15 @@ const start = () => {
         );
 
     
+        // job.stop()
         if(text === '/start') {
-            await bot.sendSticker(chatId, greeting)
-            return bot.sendMessage(chatId, 'Привет! В этом чате можно настроить уведомления о важных событиях, например, дни рождения')
+            await bot.telegram.sendMessage(chatId, greeting)
+            return bot.telegram.sendMessage(chatId, 'Привет! В этом чате можно настроить уведомления о важных событиях, например, дни рождения')
         }
         if(text === '/info') {
-            return bot.sendMessage(chatId, `Выбери, что нужно сделать`,datesOptions)
+            return bot.telegram.sendMessage(chatId, `Выбери, что нужно сделать`,datesOptions)
         }
-        return bot.sendMessage(chatId, `я тебя не понимаю`)
-
-
-
-
-
+        return bot.telegram.sendMessage(chatId, `я тебя не понимаю`)
     })
 
 

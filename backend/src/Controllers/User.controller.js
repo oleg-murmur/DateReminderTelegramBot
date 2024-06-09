@@ -1,10 +1,22 @@
+const UserModel = require("../../models/User")
+const {db} = require("../../models/db.connection")
+const { Op } = require('sequelize');
+const fs = require('fs');
+const path = require('path');
+
+ 
  class UserController {
 
 
     async Registration(req,res,next)
     { 
+        const query = {}
+        const {name, chatId,userId} = req.body
 
-        return res.json('work1')
+        const result = await UserModel.create({
+            name,userId
+        })
+        return res.json(result)
     }
 
     async Login(req,res,next) {
