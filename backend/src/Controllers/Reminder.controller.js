@@ -6,7 +6,6 @@ const path = require('path');
 
 class ReminderController {
 
-
     async getall(req,res,next)
     { 
         const query = {}
@@ -33,16 +32,24 @@ class ReminderController {
     async getAllByUserId(req,res,next) 
     {
         const query = {}
-        const {limit,userId} = req.query // вместо userId мб chatId
+        const {limit,chatId} = req.query // вместо userId мб chatId
         if(limit) {
             query['limit']= limit
         }
-        if(userId) {
-            query['where']= {userId}
+        if(chatId) {
+            query['where']= {chatId}
         }
         const result = await reminderModel.findAll({
-            // where: {userId},
             ...query
+        })
+        return res.json(result)
+    }
+    async delete(req,res,next) 
+    {
+        const query = {}
+        const {id} = req.body
+        const result = await reminderModel.destroy({
+            where: {id}
         })
         return res.json(result)
     }

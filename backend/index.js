@@ -11,7 +11,7 @@ const app = express()
 const port = process.env.PORT || 3000;
 app.use(cors())
 app.use(bodyParser.json()); 
-
+var cron = require('node-cron');
 const dates = [
   {num: 1, schedule: '*/10 * * * * *', date: "05-05-2024",chatId: 2027875527},
   {num: 2, schedule: '*/2 * * * * *'},
@@ -29,20 +29,12 @@ app.use((req, res, next) => {
       console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
     })
   })
-app.get('/data', (req, res, next) => {
-    return res.json(dates);
-  });
-app.get('/run', (req, res, next) => {
-  // cron.schedule(время прохождения функции, () => {
-  // }); вместо роута будет функция каждый день отрабатывать
-  
-  sheduleFunc(res)
-  });
 
-app.post('/', (req, res) => {
-    let data = req.body
-    console.log(req.body)
-  res.json({data})
+app.get('/', (req, res) => {
+  cron.schedule('0 8 * * *', () => {
+    sheduleFunc(req, res)
+  });
+  res.json({"result": "ok"})
 })
 
 app.use('/api', routes)

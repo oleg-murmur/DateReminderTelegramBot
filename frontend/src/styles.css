@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box; */
+}
+.hidden {
+    display: none;
+}
+
+
+#addEventForm{
+    transition: box-shadow 0.3s;
+    background: #efefef5b;
+    padding: 10px;
+    width: 300px;
+    height: 250px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.068)
+}
+#addEventForm:hover {
+    box-shadow: 0 4px 6px rgba(230, 228, 228, 0.2), 0 1px 3px rgba(0, 0, 0, 0.08); /* увеличиваем размер и тень при наведении */
+}
+.addEventFormContainer{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.addEventFormContainer > *{
+    margin: 10px;
+}
+
+@keyframes changeColor {
+    0% {
+        background-color: rgba(186, 182, 182, 0.401); /* начальный цвет */
+    }
+    50% {
+        background-color: rgba(106, 106, 107, 0.52); /* цвет на половине анимации */
+    }
+    100% {
+        background-color: rgba(200, 177, 177, 0.171); /* возврат к начальному цвету */
+    }
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.container {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.events-container {
+    /* text-align: left; */
+    margin-top: 20px;
+    /* padding: 15px; */
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.remindeText {
+    word-wrap: break-word; /* для браузеров */
+    overflow-wrap: break-word; 
+    display: block;
+}
+#event-item {
+    transition: box-shadow 0.3s;
+    background: #efefef;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 300px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.341)
+}
+#event-item:hover {
+    box-shadow: 0 4px 6px rgba(230, 228, 228, 0.4), 0 1px 3px rgba(0, 0, 0, 0.08); /* увеличиваем размер и тень при наведении */
+}
+#event-item > div{
+    display: inline-block;
+    /* justify-content: center; */
+    max-height: 100px;
+    width: 100%;
+    height: 50px;
+    margin: 2px;
+    width: 100%;
+    font-size: large;
+    padding-top: 15px;
+}
+#event-item > button{
+    margin: 2px;
+}
+
+
+h1{
+    text-align: center; 
+}
+
+button {
+    transition: box-shadow 0.3s background-color 0.3s;
+    padding: 10px;
+    margin: 0 5px;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+button:hover {
+    box-shadow: 0 4px 6px rgba(230, 228, 228, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* увеличиваем размер и тень при наведении */
+}
+button:active {
+    animation: changeColor 0.5s; /* применяем анимацию при нажатии */
+}
+input[type="date"], input[type="text"] {
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-size: large;
+}
+
+input[type="checkbox"] {
+    margin-left: 8px;
+}

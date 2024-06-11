@@ -10,10 +10,7 @@ const job = new CronJob(
 		// ctx.telegram.sendMessage("denyitwice", 'You will see this message every second');
         // ctx.telegram.sendMessage(2027875527, 'You will see this message every second');
         bot.telegram.sendMessage(2027875527, 'Привет! В этом чате можно настроить уведомления о важных событиях, например, дни рождения')
-        // await bot.telegram.sendMessage(id, `Привет ${username}! В этом чате можно настроить уведомления о важных событиях, например, дни рождения`)
-        // return bot.telegram.sendMessage(id, 'Нажми на кнопку Настроить даты, там ты сможешь добавить событие')
-    
-        // console.log("work")
+
 	}, // onTick
 	null, // onComplete
 	true, // start

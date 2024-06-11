@@ -5,10 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js -p 3000",
-    "devtwo": "nodemon index3.js -p 3000",
+    "dev": "nodemon index3.js -p 2000",
     "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "server": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
     "axios": "^1.6.7",
     "clean-webpack-plugin": "^4.0.0",
     "dotenv": "^16.4.5",
+    "express": "^4.19.2",
     "node-telegram-bot-api": "^0.64.0",
     "nodemon": "^3.1.0"
   },
