@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список событий</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Управление уведомлениями в TG</h1>
+    <div class="header">
+        <button id="viewButton">Просмотреть все события</button>
+        <button id="addButton">Добавить событие</button>
+
+    </div>
+        <div id="addEventForm" class="hidden">
+            <div class="addEventFormContainer">
+                <input type="date" id="eventDate" placeholder="Дата">
+                <input maxlength="50" type="text" id="eventName" placeholder="Название события">
+                <button id="saveEventButton">Сохранить</button>
+                <button id="unSaveEventButton">Отмена</button>
+            </div>
+        </div>
+        <div class=""><div id="eventsContainer" class="events-container"></div></div>
+
+    </div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="./bundle.76c312fcfed1e6eaf195.js"></script>
+
+</body>
+</html>

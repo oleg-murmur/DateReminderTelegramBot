@@ -8,7 +8,6 @@ const eventDate = document.getElementById('eventDate');
 const eventName = document.getElementById('eventName');
 const unSaveEventButton = document.getElementById('unSaveEventButton');
 const tgInfo = window.Telegram.WebApp
-
 let events = [];
 
 function ShowList() {
@@ -30,12 +29,20 @@ function ShowList() {
             <div id="event-item">
                 <div class="remindeText">${event.remindeText}</div>
                 <div class="remindeDate">${event.remindeDate}</div>
-                <button onclick="deleteEvent('${event.id}')">Удалить</button>
+                <button id="deleteEventButton" value="${event.id}" >Удалить</button>
                 </div>
                 `;
         eventsContainer.appendChild(eventElement);
     });
 }}
+document.addEventListener("click", function(event) {
+    if(event.target && event.target.id === "deleteEventButton") {
+        const eventId = event.target.getAttribute('value');
+        console.log(eventId);
+        deleteEvent(eventId)
+    }
+});
+//  <button onclick="deleteEvent('${event.id}')">Удалить</button>
 const getData = async () => {
     try {
         await fetch(`http://localhost:3000/api/reminders/getbyuser?chatId=${tgInfo.initDataUnsafe?.user?.id}`) // prod for get user reminders
@@ -76,7 +83,6 @@ unSaveEventButton.addEventListener('click', () => {
     eventDate.value = '';
     eventName.value = '';
 });
-
 
 async function deleteEvent(eventId) { 
     // возможность отменить удаление (таймер 5 сек)
