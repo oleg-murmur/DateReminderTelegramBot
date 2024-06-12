@@ -7,7 +7,6 @@ const path = require('path');
  
  class UserController {
 
-
     async Registration(req,res,next)
     { 
         const query = {}

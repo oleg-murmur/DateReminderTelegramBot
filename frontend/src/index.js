@@ -38,8 +38,8 @@ function ShowList() {
 }}
 const getData = async () => {
     try {
-        await fetch(`http://localhost:3000/api/reminders/getbyuser?userId=${tgInfo.initDataUnsafe?.user?.username}`)
-        // await fetch(`http://localhost:3000/api/reminders/getall`)
+        await fetch(`http://localhost:3000/api/reminders/getbyuser?chatId=${tgInfo.initDataUnsafe?.user?.id}`) // prod for get user reminders
+        // await fetch(`http://localhost:3000/api/reminders/getall`) // local for get all reminders
         .then(response => response.json())
         .then(data => {console.log(data); events = data}).then(()=> ShowList())       
     } catch (error) {
@@ -47,7 +47,14 @@ const getData = async () => {
     }
 }
 viewButton.addEventListener('click', () => {
-    getData()
+    if(tgInfo.initDataUnsafe?.user?.username) {
+        getData()
+    }else{
+        eventsContainer.innerHTML = '';
+        const eventElement = document.createElement('div');
+        eventElement.innerHTML = `<div>Данные не загружены</div>`
+        eventsContainer.appendChild(eventElement);
+    }
 })
 getData()
 

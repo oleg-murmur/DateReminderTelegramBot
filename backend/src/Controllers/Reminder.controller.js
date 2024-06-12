@@ -1,8 +1,4 @@
 const reminderModel = require("../../models/Reminde")
-const {db} = require("../../models/db.connection")
-const { Op } = require('sequelize');
-const fs = require('fs');
-const path = require('path');
 
 class ReminderController {
 
@@ -20,9 +16,7 @@ class ReminderController {
     }
 
     async create(req,res,next) {
-        const query = {}
         const {date,eventName, chatId,userId} = req.body
-
         const result = await reminderModel.create({
             chatId,remindeDate: date,remindeText: eventName,userId
         })
@@ -31,17 +25,20 @@ class ReminderController {
 
     async getAllByUserId(req,res,next) 
     {
+        let result;
         const query = {}
-        const {limit,chatId} = req.query // вместо userId мб chatId
+        const {limit,chatId} = req.query
         if(limit) {
             query['limit']= limit
         }
         if(chatId) {
             query['where']= {chatId}
+            result = await reminderModel.findAll({
+                ...query
+            })
+        }else{
+         result = ""       
         }
-        const result = await reminderModel.findAll({
-            ...query
-        })
         return res.json(result)
     }
     async delete(req,res,next) 
