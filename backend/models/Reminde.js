@@ -17,7 +17,7 @@ module.exports = db.define(
   {
     // Model attributes are defined here
     id: {
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     //   autoIncrement: true,
       primaryKey: true,

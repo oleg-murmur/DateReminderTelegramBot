@@ -1,27 +1,60 @@
-version: "3"
+version: "3.9"
 services:
-  application:
-    container_name: application
-    build: ./backend
-    ports:
-      - 3000:3000
-#   redis:
-#     image: redis:latest
-#     ports:
-#       - "redis://localhost:6379:6379"
-#     volumes:
-#       - "./data:/data"
-#     command: ["redis-server", "--bind", "redis", "--port", "6379"]
-#     networks:
-#       - webnet
-      
-# networks:
-#   webnet:
+    frontend-ngrok:
+        container_name: frontend-ngrok
+        image: bot-app
+        build: frontend/
+            # context: frontend
+            # dockerfile: frontend/Dockerfile
+        restart: always
+        ports:
+            - "5000:5000"
+    node_server_bot_app:
+        container_name: node-server-bot-app
+        build: backend/
+        image: dateBot/node_live_app
+        ports:
+            - "3000:3000"
+        env_file:
+            - backend/.env
+        depends_on:
+            - bot_node_db
+        restart: always
+    bot_node_db:
+        container_name: bot_node_db
+        image: postgres:14
+        ports:
+        - "5432:5432"
+        environment:
+        - POSTGRES_DB=reminder
+        - POSTGRES_PASSWORD=12345
+        - POSTGRES_USER=postgres
+        volumes:
+        - node_db_data:/var/lib/postgresql/data
+    ngrok_front:
+        image: wernight/ngrok
+        volumes:
+        - ./ngrok.yml:/home/ngrok/.ngrok2/ngrok.yml
+        ports:
+        - "4040:4040"
+        command: ["ngrok", "http", "frontend-ngrok:5000"]
+    
+    #unlike try to connect to database from node js using ngrok
 
-    # application:
-    # container_name: application
-    # build: ./backend
-    # ports:
-    #   - 3000:3000
-    # depends_on:
-    #   - redis_insight
+    # ngrok_server:
+    #     image: wernight/ngrok
+    #     volumes:
+    #     - ./ngrok.server.yml:/home/ngrok/.ngrok2/ngrok.yml
+    #     ports:
+    #     - "4040:4040"
+    #     command: ["ngrok", "http", "node_server_bot_app:3000"]
+    # ngrok_db:
+    #     image: wernight/ngrok
+    #     volumes:
+    #     - ./ngrok.db.yml:/home/ngrok/.ngrok2/ngrok.yml
+    #     ports:
+    #     - "5040:4040"
+    #     command: ["ngrok", "http", "bot_node_db:5432"]
+
+volumes:
+  node_db_data: {}
