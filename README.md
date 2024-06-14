@@ -35,35 +35,58 @@ You will add the date and descriptions of the event. On the day of the specified
 Check .env.example and create .env
    
 windows:
+     
 ```sh
-  echo. > .env
+echo. > .env
 ```
 macOS:
+     
 ```sh
-  touch .env
+touch .env
 ```
-2. Create telegram bot and copy token
-3. Set BOT_TOKEN=token in .env file
-4. Run project:
- - Start command:
-```sh
-  docker-compose up -d
-```
- - Stop server container:
-```sh
-  docker-compose stop node-server-bot-app
-```
- - check localhost:4040 and copy ngrok url
 
- - set URL_NGROK_SERVER=url in .env file
- - Build server container:
-```sh
-  docker-compose build node-server-bot-app
-```
- - Start:
-```sh
-  docker-compose up -d
-```
+2. Add ngrok.yml file to backend folder.
+
+      - Create ngrok acc and copy auth token
+      - Check example.ngrok.yml and create ngrok.yml
+      - Set `authtoken: ngrok_token` in ngrok.yml file
+  
+
+windows:
+
+ ```sh
+ echo. > ngrok.yml
+ ```
+
+macOS:
+
+ ```sh
+ touch ngrok.yml
+ ```
+
+
+3. Create telegram bot and copy token
+4. Set `BOT_TOKEN=bot_token` in .env file
+5. Run project:
+      - Start command:
+     ```sh
+       docker-compose up -d
+     ```
+      - Stop server container:
+     ```sh
+       docker-compose stop node-server-bot-app
+     ```
+      - check localhost:4040 and copy ngrok url
+     
+      - set URL_NGROK_SERVER=url in .env file
+      - Build server container:
+     ```sh
+       docker-compose build node-server-bot-app
+     ```
+      - Start:
+     ```sh
+       docker-compose up -d
+     ```
 
 Open your telegram-bot and press the button: `start`
 
