@@ -1,4 +1,0 @@
-authtoken: AUTH_NGROK_TOKEN
-region: eu
-web_addr: 0.0.0.0:4040
-version: 2
