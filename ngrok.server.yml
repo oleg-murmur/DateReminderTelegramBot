@@ -1,5 +1,5 @@
-authtoken: 2hk7wxSsi7MUteOG4g5We1XvzMq_5uhLHK5X666NS4R4EapFh # server
-# authtoken: 2hjO014fNSqMjGNBCYogHF7RrM1_23uWGcD1hKtudKDbZWBjW front
+authtoken: AUTH_NGROK_TOKEN
+
 region: eu
 web_addr: 0.0.0.0:4040
 version: 2
