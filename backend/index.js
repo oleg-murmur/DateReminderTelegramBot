@@ -23,18 +23,33 @@ app.use((req, res, next) => {
     })
   })
 
-app.get('/runFunc', (req, res) => {
-  let { runStatus } = req.body
-  if(runStatus) {
-  cron.schedule('*/10 * * * * *', async() => {
-    console.log('start func')
-    await sheduleFunc(req, res)
+  let cronTask = null;
+
+  app.get('/runFunc', (req, res) => {
+      let { runStatus } = req.query;
+  
+      if (runStatus === 'true') {
+          if (cronTask === null) {
+              cronTask = cron.schedule('*/10 * * * * *', async () => {
+                  console.log('start func');
+                  await sheduleFunc(req, res);
+              });
+              res.json({ "result": "started" });
+          } else {
+              res.json({ "result": "already running" });
+          }
+      } else if (runStatus === 'false') {
+          if (cronTask !== null) {
+              cronTask.stop();
+              cronTask = null;
+              res.json({ "result": "stopped" });
+          } else {
+              res.json({ "result": "not running" });
+          }
+      } else {
+          res.status(400).json({ "error": "Invalid runStatus value" });
+      }
   });
-  res.json({"result": "ok"})
-}else {
-  res.json({"runStatus": "stoppped"})
-}
-})
 app.use('/api', routes)
 
 
