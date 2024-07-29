@@ -22,11 +22,18 @@ app.use((req, res, next) => {
       console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
     })
   })
-app.get('/', (req, res) => {
-  cron.schedule('0 8 * * *', () => {
-    sheduleFunc(req, res)
+
+app.get('/runFunc', (req, res) => {
+  let { runStatus } = req.body
+  if(runStatus) {
+  cron.schedule('*/10 * * * * *', async() => {
+    console.log('start func')
+    await sheduleFunc(req, res)
   });
   res.json({"result": "ok"})
+}else {
+  res.json({"runStatus": "stoppped"})
+}
 })
 app.use('/api', routes)
 

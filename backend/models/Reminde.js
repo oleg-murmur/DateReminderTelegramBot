@@ -30,10 +30,11 @@ module.exports = db.define(
     },
     chatId: {
       type: DataTypes.STRING,
+      allowNull: true,
     },
     userId: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
 
     },
     remindeDate: {

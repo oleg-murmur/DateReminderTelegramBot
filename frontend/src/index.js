@@ -14,11 +14,11 @@ function ShowList() {
     eventsContainer.innerHTML = '';
     if(events.length <= 0 || undefined) {
         const eventElement = document.createElement('div');
-        if(tgInfo.initDataUnsafe?.user?.username) {
-            eventElement.innerHTML = `<div>Пока события не добавлено. Нажмите "Добавить событие"</div>`
-        }else{
-            eventElement.innerHTML = `<div>Вы не авторизованы</div>`
-        }
+        // if(tgInfo.initDataUnsafe?.user?.username) {
+        //     eventElement.innerHTML = `<div>Пока события не добавлено. Нажмите "Добавить событие"</div>`
+        // }else{
+        //     eventElement.innerHTML = `<div>Вы не авторизованы</div>`
+        // }
         eventsContainer.appendChild(eventElement);
     }else{
     events.forEach(event => { 
@@ -45,8 +45,8 @@ document.addEventListener("click", function(event) {
 //  <button onclick="deleteEvent('${event.id}')">Удалить</button>
 const getData = async () => {
     try {
-        await fetch(`http://localhost:3000/api/reminders/getbyuser?chatId=${tgInfo.initDataUnsafe?.user?.id}`) // prod for get user reminders
-        // await fetch(`http://localhost:3000/api/reminders/getall`) // local for get all reminders
+        // await fetch(`http://localhost:3000/api/reminders/getbyuser?chatId=${tgInfo.initDataUnsafe?.user?.id}`) // prod for get user reminders
+        await fetch(`http://localhost:3000/api/reminders/getall`) // local for get all reminders
         .then(response => response.json())
         .then(data => {console.log(data); events = data}).then(()=> ShowList())       
     } catch (error) {
@@ -128,15 +128,16 @@ saveEventButton.addEventListener('click', () => {
         eventName: eventName.value,
         another_info: JSON.stringify(tgInfo),
     };
-    if(tgInfo.initDataUnsafe?.user?.id && tgInfo.initDataUnsafe?.user?.username) {
-        try {
-            createDate(newEvent) 
-        } catch (error) {
-           console.log(error) 
-        }
-    }else{
-        console.log("ошибка")
-    }
+    createDate(newEvent) 
+    // if(tgInfo.initDataUnsafe?.user?.id && tgInfo.initDataUnsafe?.user?.username) {
+    //     try {
+    //         createDate(newEvent) 
+    //     } catch (error) {
+    //        console.log(error) 
+    //     }
+    // }else{
+    //     console.log("ошибка")
+    // }
     
     events.push(newEvent);
     addEventForm.classList.add('hidden');

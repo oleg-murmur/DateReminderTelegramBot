@@ -1,18 +1,18 @@
 version: "3.9"
 services:
-    frontend-ngrok:
-        container_name: frontend-ngrok
-        image: bot-app
+    frontend_ngrok:
+        container_name: frontend_ngrok
+        image: bot_app
         build: frontend/
             # context: frontend
             # dockerfile: frontend/Dockerfile
         restart: always
         ports:
-            - "5000:5000"
+            - "9000:9000"
     node_server_bot_app:
-        container_name: node-server-bot-app
+        container_name: node_server_bot_app
         build: backend/
-        image: dateBot/node_live_app
+        image: node_live_app
         ports:
             - "3000:3000"
         env_file:
@@ -37,7 +37,7 @@ services:
         - ./ngrok.yml:/home/ngrok/.ngrok2/ngrok.yml
         ports:
         - "4040:4040"
-        command: ["ngrok", "http", "frontend-ngrok:5000"]
+        command: ["ngrok", "http", "frontend_ngrok:9000"]
     
     #unlike try to connect to database from node js using ngrok
 

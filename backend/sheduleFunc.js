@@ -11,7 +11,7 @@ const formattedDate = require('./GetDateNow')
 
 let date = formattedDate()
 
-const sheduleFunc = async (req,res) => {
+const sheduleFunc = async (req = undefined,res) => {
   countMessage = 0
   const query = {}
   const {limit} = req.query
@@ -25,9 +25,13 @@ const sheduleFunc = async (req,res) => {
   try {
       function sendMessageByChatId() {
         result.forEach((num)=> {
-            if(num.remindeDate === date)
+          console.log(num.remindeDate)
+          console.log(date)
+            if(num.remindeDate == date){
+
               countMessage++
             bot.telegram.sendMessage(num.chatId, `Привет! Ты оставлял себе напоминание в этот день: ${num.remindeText}`)
+            }
         })
       }
       sendMessageByChatId()
